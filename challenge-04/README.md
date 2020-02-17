@@ -115,10 +115,10 @@ citado acima, no lugar de "pessoas".
 */
 carro.adicionarPessoas = function(n) {
   var totalPessoas = carro.quantidadePessoas + n;
-  if(carro.quantidadePessoas === carro.assentos) {
+  if(carro.quantidadePessoas === carro.assentos && totalPessoas >= carro.assentos) {
     return `O carro já está lotado!`
   }
-  if(totalPessoas > carro.assentos) {
+  if (totalPessoas > carro.assentos) {
     var pessoasCabem = carro.assentos - carro.quantidadePessoas;
     var pluralOuSingular = pessoasCabem === 1 ? 'pessoa' : 'pessoas';
     var cabeCabem = pessoasCabem === 1 ? 'cabe' : 'cabem';
@@ -140,13 +140,13 @@ Qual a cor atual do carro?
 carro.obterCor(); // 'Branco'
 
 // Mude a cor do carro para vermelho.
-carro.mudaCor('vermelho'); // 'vermelho'
+carro.mudarCor('Vermelho'); // undefined
 
 // E agora, qual a cor do carro?
-carro.obterCor(); // 'vermelho'
+carro.obterCor(); // 'Vermelho'
 
 // Mude a cor do carro para verde musgo.
-carro.mudaCor('verde musgo'); // 'verde musgo'
+carro.mudarCor('Verde Musgo'); // undefined
 
 // E agora, qual a cor do carro?
 carro.obterCor(); // 'verde musgo'
@@ -161,7 +161,7 @@ carro.adicionarPessoas(2); // 'Já temos 2 pessoas no carro!'
 carro.adicionarPessoas(4); // 'Só cabem mais 3 pessoas'
 
 // Faça o carro encher.
-carro.adicionarPessoas(3); // 'O carro já está lotado!'
+carro.adicionarPessoas(3); // 'Já temos 5 pessoas no carro!'
 
 // Tire 4 pessoas do carro.
 carro.adicionarPessoas(-4); // 'Já temos 1 pessoa no carro!'

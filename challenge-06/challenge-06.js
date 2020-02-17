@@ -35,7 +35,7 @@ Crie uma função chamada `showTeamPosition` com as seguintes características:
     "Não temos a informação do time que está nessa posição."
 */
 function showTeamPosition(n) {
-  if (n > teams.length) {
+  if (n > teams.length || n < 1) {
     return `Não temos a informação do time que está nessa posição.`
   }
   return `O time que está em ${n}º lugar é o ${teams[n-1]}.`;
@@ -49,6 +49,7 @@ console.log(showTeamPosition(1));
 console.log(showTeamPosition(2));
 console.log(showTeamPosition(3));
 console.log(showTeamPosition(4));
+console.log(showTeamPosition(-2));
 
 /*
 Mostre os números de 20 a 30 no console (inclusive o 30), usando a estrutura de
@@ -56,8 +57,7 @@ repetição "while".
 */
 var counter = 20;
 while (counter <= 30) {
-  console.log(counter)
-  counter++;
+  console.log(counter++);
 }
 
 /*
@@ -73,33 +73,28 @@ Crie uma função chamada `convertToHex`, com as seguintes características:
     "Não temos o equivalente hexadecimal para [COR]."
 */
 function convertToHex(cor) {
-  var cores = {
-    red: '#ff0000',
-    green: '#00ff00',
-    blue: '#0000ff',
-    yellow: '#f0f000',
-    white: '#ffffff'
-  }
+  var hexa;
+
   switch (cor) {
     case 'red':
-      return `O hexadecimal para a cor ${cor} é ${cores[cor]}`
+      hexa = '#ff0000';
       break;
     case 'green':
-      return `O hexadecimal para a cor ${cor} é ${cores[cor]}`
+      hexa = '#00ff00';
       break;
     case 'blue':
-      return `O hexadecimal para a cor ${cor} é ${cores[cor]}`
+      hexa = '#0000ff';
       break;
     case 'yellow':
-      return `O hexadecimal para a cor ${cor} é ${cores[cor]}`
+      hexa = '#f0f000';
       break;
     case 'white':
-      return `O hexadecimal para a cor ${cor} é ${cores[cor]}`
+      hexa = '#ffffff';
       break;
     default:
       return `Não temos o equivalente hexadecimal para ${cor}`
-      break;
   }
+  return `O hexadecimal para a cor ${cor} é ${hexa}`
 }
 
 /*

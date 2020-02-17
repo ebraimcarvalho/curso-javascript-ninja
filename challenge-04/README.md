@@ -115,17 +115,20 @@ citado acima, no lugar de "pessoas".
 */
 carro.adicionarPessoas = function(n) {
   var totalPessoas = carro.quantidadePessoas + n;
+  var pessoasCabem = carro.assentos - carro.quantidadePessoas;
+  var pluralOuSingular = pessoasCabem === 1 ? 'pessoa' : 'pessoas';
+  var cabeCabem = pessoasCabem === 1 ? 'cabe' : 'cabem';
   if(carro.quantidadePessoas === carro.assentos && totalPessoas >= carro.assentos) {
     return `O carro já está lotado!`
   }
   if (totalPessoas > carro.assentos) {
-    var pessoasCabem = carro.assentos - carro.quantidadePessoas;
-    var pluralOuSingular = pessoasCabem === 1 ? 'pessoa' : 'pessoas';
-    var cabeCabem = pessoasCabem === 1 ? 'cabe' : 'cabem';
     return `Só ${cabeCabem} mais ${pessoasCabem} ${pluralOuSingular}`
   }
-  carro.quantidadePessoas += n;
-  var pluralOuSingular = carro.quantidadePessoas === 1 ? 'pessoa' : 'pessoas';
+  if (totalPessoas >= 0) {
+    carro.quantidadePessoas += n
+  } else {
+    return 'Impossível ficar com pessoas negativas!';
+  }
   return `Já temos ${carro.quantidadePessoas} ${pluralOuSingular} no carro!`
 }
 

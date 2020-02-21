@@ -1,3 +1,5 @@
+(function() {
+  'use strict';
 /*
 1. Envolva todo o conteúdo desse desafio em uma IIFE.
 2. Adicione a diretiva 'use strict';
@@ -14,7 +16,10 @@ Ex: no caso do nome ser "Fernando", deve mostrar as frases:
 E assim por diante, até a última.
 */
 console.log( 'As letras do seu nome:' );
-// ?
+var name = 'Ebraim';
+for (var i = 0, len = name.length; i < len; i++) {
+  console.log(`${name.charAt(i)} é a ${i+1}ª letra do meu nome.`)
+}
 
 /*
 - Declare uma variável chamada `fullName`, que receba seu nome completo,
@@ -29,7 +34,12 @@ curso para fazer isso funcionar corretamente :)
 console.log para cada formato.
 */
 console.log( '\nNome convertido à partir de um slug:' );
-// ?
+var fullName = 'ebraim-de-frança-carvalho-filho';
+var newName = fullName.split('-').map(item => {
+  return item[0].toUpperCase() + item.slice(1);
+})
+console.log(fullName);
+console.log(newName.join(' '));
 
 /*
 - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
@@ -68,3 +78,4 @@ Ex.: Nomes que deveriam funcionar: "Fernando", "RoBertO", "gabriEla", etc.
 */
 console.log( '\nNome com letras intercaladas entre caixa alta e baixa:' );
 // ?
+})();

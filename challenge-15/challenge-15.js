@@ -22,7 +22,21 @@
     adicionados à idade original (age). Esse método deverá retornar o objeto
     que será instanciado.
   */
-  // ?
+  function Person(name, lastname, age) {
+    this.name = name,
+    this.lastname = lastname,
+    this.age = parseInt(age),
+    this.getFullName = function getFullName () {
+      return `${this.name} ${this.lastname}`
+    },
+    this.getAge = function () {
+      return this.age
+    },
+    this.addAge = function () {
+      this.age += arguments[0];
+      return this;
+    }
+  }
 
   /*
   Crie 3 novos objetos usando o construtor acima. Os objetos serão novas
@@ -31,20 +45,28 @@
   Mostre as 3 novas pessoas criadas no console (Um console.log por pessoa).
   */
   console.log( 'Novas pessoas criadas à partir de Person:' );
-  // ?
-
+  var ebraim = new Person('Ebraim', 'Carvalho', '28');
+  var brenda = new Person('Brenda', 'Oliveira', '26');
+  var tufa = new Person('Tufão', 'Carvalho', '4');
+  console.log(ebraim);
+  console.log(brenda);
+  console.log(tufa);
   /*
   Mostre no console o nome completo de cada pessoa.
   */
   console.log( '\nNomes das pessoas:' );
-  // ?
+  console.log(ebraim.getFullName());
+  console.log(brenda.getFullName());
+  console.log(tufa.getFullName());
 
   /*
   Mostre no console as idades de cada pessoa, com a frase:
   - "[NOME COMPLETO] tem [IDADE] anos."
   */
   console.log( '\nIdade das pessoas:' );
-  // ?
+  console.log(`${ebraim.getFullName()} tem ${ebraim.getAge()} anos.`);
+  console.log(`${brenda.getFullName()} tem ${brenda.getAge()} anos.`);
+  console.log(`${tufa.getFullName()} tem ${tufa.getAge()} anos.`);
 
   /*
   Adicione alguns anos à cada pessoa, e mostre no console a nova idade de
@@ -52,5 +74,7 @@
   - "[NOME COMPLETO] agora tem [NOVA IDADE] anos."
   */
   console.log( '\nNova idade das pessoas:' );
-  // ?
+  console.log(`${ebraim.getFullName()} agora tem ${ebraim.addAge(3).getAge()} anos.`);
+  console.log(`${brenda.getFullName()} agora tem ${brenda.addAge(2).getAge()} anos.`);
+  console.log(`${tufa.getFullName()} agora tem ${tufa.addAge(3).getAge()} anos.`);
 })();

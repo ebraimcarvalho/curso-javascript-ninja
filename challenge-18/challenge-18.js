@@ -18,7 +18,7 @@
   */
   console.log( 'Limpando CPFs:' );
   function cleanCPF(cpf) {
-    cpf = cpf.replace(/\D|\s/g, '');
+    cpf = cpf.replace(/\D/g, '');
     return cpf;
   }
   console.log(cleanCPF("210.458.5  22-05"));
@@ -33,7 +33,12 @@
   Mostre o resultado no console.
   */
   console.log( '\nFormatando CPFs corretamente:' );
-  // ?
+  var cpf = '06331802460';
+  function correctCPF(cpf) {
+    cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, '$1.$2.$3-$4');
+    return cpf;
+  }
+  console.log(correctCPF(cpf));
 
   /*
   Crie uma expressão regular que faça match com as palavras "junho" ou "julho",
@@ -47,7 +52,8 @@
   ["junho", "julho"]
   */
   console.log( '\nMatch com as palavras "junho" ou "julho" para a frase "Os meses de janeiro, junho e julho começam com a letra j.":' );
-  // ?
+  var regex = /ju[nl]ho/g;
+  console.log('Os meses de janeiro, junho e julho começam com a letra j.'.match(regex));
 
   /*
   Crie uma expressão regular que faça o match com a abertura de uma tag
@@ -59,7 +65,8 @@
   ["<div>", "<section>", "<blockquote>"]
   */
   console.log( '\nMatch com a abertura de uma tag HTML:' );
-  // ?
+  var regexHtml = /<\w+>/g;
+  console.log('<div><section><blockquote>Texto <img /></blockquote></section></div>'.match(regexHtml));
 
   /*
   Crie uma expressão regular que faça o match com uma tag HTML vazia, casando
@@ -71,7 +78,8 @@
   ["<li></li>", "<li></li>", "<span></span>"]
   */
   console.log( '\nMatch com tags HTML vazias (abertura e fechamento da tag):' );
-  // ?
+  var regexHtml2 = /<\w+><\/\w+>/g;
+  console.log('<div><ul><li></li><li></li><li><span></span></li></ul></div>'.match(regexHtml2));
 
   /*
   Vamos complicar um pouco agora :D
@@ -96,5 +104,6 @@
   corretas, para depois aplicar no código ;)
   */
   console.log( '\nFazer replace dos textos das tags:' );
-  // ?
+  var regexHtmlText = /<(\w+)>([^<]+)<\/\w+>/g;
+  console.log('<h1>Título da página</h1><p>Este é um parágrafo</p><footer>Rodapé</footer>'.replace(regexHtmlText, `<$1>O texto dentro da tag "$1" é "$2"</$2>\n`))
 })();

@@ -103,7 +103,9 @@
   o que acontece ;)
   */
   console.log( '\nExiste um { number: 2 } em numberObjects?' );
+  console.log(numberObjects.indexOf({number: 1}))
   console.log(numberObjects.indexOf({ number: 2 }) > -1 ? 'Existe um objeto { number: 2 } em numberObjects!' : 'Não existe um objeto { number: 2 } em numberObjects :(')
+  //não encontrará porque nenhum objeto é igual a outro, então, não encontrará!
 
   /*
   Fazendo o mesmo do exercício acima, mas começando a buscar do último índice,

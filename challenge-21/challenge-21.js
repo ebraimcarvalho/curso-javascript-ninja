@@ -15,19 +15,27 @@
   usar o nome que achar melhor, desde que ele seja semântico, ou seja, o nome
   dado ao elemento HTML deve definir o que o elemento é ou o que ele faz.
   */
-  var $inputTimer = document.querySelector('input[type="text"]')
-  var $startButton = document.querySelector('#start');
-  var $stopButton = document.querySelector('#stop');
-  var $resetButton = document.querySelector('#reset');
+  var $inputTimer = document.querySelector('[data-js="inputText"]')
+  var $startButton = document.querySelector('[data-js="start"]');
+  var $stopButton = document.querySelector('[data-js="stop"]');
+  var $resetButton = document.querySelector('[data-js="reset"]');
+  var temporizador;
 
   $startButton.addEventListener('click', function() {
-    $inputTimer.value = 10;
-    timer();
     function timer () {
-      setInterval(function() {
-        $inputTimer.value =+ 10;
-      }, 1000)
-    };
-  }, false)
+      $inputTimer.value++;
+      temporizador = setTimeout(timer, 1000);
+    }
+    timer();
+  }, false);
+
+  $stopButton.addEventListener('click', function() {
+    clearTimeout(temporizador);
+  }, false);
+
+  $resetButton.addEventListener('click', function() {
+    clearTimeout(temporizador);
+    $inputTimer.value = 0;
+  }, false);
 
 })(window, document);

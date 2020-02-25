@@ -15,27 +15,28 @@
   usar o nome que achar melhor, desde que ele seja semântico, ou seja, o nome
   dado ao elemento HTML deve definir o que o elemento é ou o que ele faz.
   */
-  var $inputTimer = document.querySelector('[data-js="inputText"]')
-  var $startButton = document.querySelector('[data-js="start"]');
-  var $stopButton = document.querySelector('[data-js="stop"]');
-  var $resetButton = document.querySelector('[data-js="reset"]');
-  var temporizador;
+  const $inputTimer = document.querySelector('[data-js="timer"]');
+  const $startButton = document.querySelector('[data-js="start"]');
+  const $stopButton = document.querySelector('[data-js="stop"]');
+  const $resetButton = document.querySelector('[data-js="reset"]');
+  let interval;
 
-  $startButton.addEventListener('click', function() {
-    function timer () {
-      $inputTimer.value++;
-      temporizador = setTimeout(timer, 1000);
-    }
-    timer();
-  }, false);
+  $startButton.addEventListener('click', startTimer, false);
+  $stopButton.addEventListener('click', stopTimer, false);
+  $resetButton.addEventListener('click', resetTimer, false);
 
-  $stopButton.addEventListener('click', function() {
-    clearTimeout(temporizador);
-  }, false);
+  function startTimer() {
+    $inputTimer.value++;
+    interval = setTimeout(startTimer, 1000);
+  }
 
-  $resetButton.addEventListener('click', function() {
-    clearTimeout(temporizador);
+  function stopTimer() {
+    clearTimeout(interval);
+  }
+
+  function resetTimer() {
     $inputTimer.value = 0;
-  }, false);
+    stopTimer();
+  }
 
 })(window, document);

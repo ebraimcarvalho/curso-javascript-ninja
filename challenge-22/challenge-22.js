@@ -26,7 +26,7 @@
   */
   console.log( 'O nome das pessoas é:' );
   function getFullName() {
-    return `${this.name} ${this.lastname}`;
+    return `${this.name} ${this.lastname}`
   }
 
   console.log(getFullName.call(person1));
@@ -41,7 +41,7 @@
   */
   function sum() {
     console.log(arguments);
-    return Array.prototype.reduce.call(arguments, (acumulado, atual) => {
+    return Array.prototype.reduce.call(arguments, function(acumulado, atual) {
       return Number(acumulado) + Number(atual);
     })
   }

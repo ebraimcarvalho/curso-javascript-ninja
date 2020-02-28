@@ -29,6 +29,7 @@
   var $input = document.querySelector('input[type="text"]');
   var $buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
   var $buttonCE = document.querySelector('[data-js="CE"]');
+  var $buttonBack = document.querySelector('[data-js="<"]');
   var $buttonsOperations = document.querySelectorAll('[data-js="button-operation"]')
   var $buttonEqual = document.querySelector('[data-js="="]');
   var $buttonPoint = document.querySelector('[data-js="."]');
@@ -40,15 +41,15 @@
     button.addEventListener('click', handleClickOperation, false)
   });
   $buttonCE.addEventListener('click', handleClickCE, false);
+  $buttonBack.addEventListener('click', handleClickBack, false);
+  $buttonEqual.addEventListener('click', handleClickEqual, false);
 
   function handleClickNumber() {
     $input.value += this.value;
   }
 
   function handleClickOperation() {
-    if(isLastItemAnOperation()) {
-      $input.value = $input.value.slice(0, -1);
-    }
+    $input.value = removeLastItemIfOperator($input.value);
     $input.value += this.value;
   }
 
@@ -56,12 +57,47 @@
     $input.value = 0;
   }
 
-  function isLastItemAnOperation() {
+  function handleClickBack() {
+    var exp = $input.value
+    if(exp) {
+      $input.value = exp.substring(0, exp.length-1);
+    }
+  }
+
+  function isLastItemAnOperation(number) {
     var operations = ['+', '-', '*', '/'];
-    var lastItem = $input.value.split('').pop();
+    var lastItem = number.split('').pop();
     return operations.some(function (operator) {
       return operator === lastItem;
     })
+  }
+
+  function removeLastItemIfOperator(number) {
+    if(isLastItemAnOperation(number)) {
+      return number.slice(0, -1);
+    }
+    return number;
+  }
+
+  function handleClickEqual() {
+    $input.value = removeLastItemIfOperator($input.value);
+    var allValues = $input.value.match(/\d+[+*/-]?/g);
+    $input.value = allValues.reduce(function(accumulated, actual) {
+      var firstValue = accumulated.slice(0, -1);
+      var operator = accumulated.split('').pop();
+      var lastValue = removeLastItemIfOperator(actual);
+      var lastOperator = isLastItemAnOperation(actual) ? actual.split('').pop() : false;
+      switch(operator) {
+        case '+':
+          return (Number(firstValue) + Number(lastValue)) + lastOperator;
+        case '-':
+          return (Number(firstValue) - Number(lastValue)) + lastOperator;
+        case '*':
+          return (Number(firstValue) * Number(lastValue)) + lastOperator;
+        case '/':
+          return (Number(firstValue) / Number(lastValue)) + lastOperator;
+      }
+    });
   }
 
 

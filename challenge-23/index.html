@@ -4,39 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Ninja</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .app {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    input[type="text"] {
+      width: 203px;
+      margin: 5px;
+      padding: 5px;
+      font-size: 25px;
+    }
+
+    button {
+      width: 50px;
+      height: 50px;
+      font-size: 25px;
+      margin: 2px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="app">
     <div id="input">
       <input type="text" value="0" readonly>
     </div>
-    <div id="1">
-      <button value="ce" data-js="CE">CE</button>
-      <button value="/" data-js="button-operation">/</button>
-      <button value="*" data-js="button-operation">*</button>
-      <button value="-" data-js="button-operation">-</button>
-    </div>
-    <div id="2">
-      <button value="7" data-js="button-number">7</button>
-      <button value="8" data-js="button-number">8</button>
-      <button value="9" data-js="button-number">9</button>
-      <button value="+" data-js="button-operation">+</button>
-    </div>
-    <div id="3">
-      <button value="4" data-js="button-number">4</button>
-      <button value="5" data-js="button-number">5</button>
-      <button value="6" data-js="button-number">6</button>
-    </div>
-    <div id="4">
-      <button value="1" data-js="button-number">1</button>
-      <button value="2" data-js="button-number">2</button>
-      <button value="3" data-js="button-number">3</button>
-      <button value="=" data-js="=">=</button>
-    </div>
-    <div id="5">
-      <button value="0" data-js="button-number">0</button>
-      <button value="." data-js="button-number">.</button>
-    </div>
+    <table>
+      <tr id="1">
+        <td><button value="ce" data-js="CE">C</button></td>
+        <td><button value="ce" data-js="<"><</button></td>
+        <td><button value="/" data-js="button-operation">/</button></td>
+        <td><button value="*" data-js="button-operation">*</button></td>
+      </tr>
+      <tr id="2">
+        <td><button value="7" data-js="button-number">7</button></td>
+        <td><button value="8" data-js="button-number">8</button></td>
+        <td><button value="9" data-js="button-number">9</button></td>
+        <td><button value="-" data-js="button-operation">-</button></td>
+      </tr>
+      <tr id="3">
+        <td><button value="4" data-js="button-number">4</button></td>
+        <td><button value="5" data-js="button-number">5</button></td>
+        <td><button value="6" data-js="button-number">6</button></td>
+        <td><button value="+" data-js="button-operation">+</button></td>
+      </tr>
+      <tr id="4">
+        <td><button value="1" data-js="button-number">1</button></td>
+        <td><button value="2" data-js="button-number">2</button></td>
+        <td><button value="3" data-js="button-number">3</button></td>
+        <td rowspan=2><button value="=" data-js="=" style="height: 106px;">=</button></td>
+      </tr>
+      <tr id="5">
+        <td colspan=2><button value="0" data-js="button-number" style="width: 106px;">0</button></td>
+        <td><button value="." data-js="button-number">.</button></td>
+      </tr>
+    </table>
   </div>
 
   <script src="./challenge-23.js"></script>

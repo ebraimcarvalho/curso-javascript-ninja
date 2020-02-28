@@ -25,4 +25,44 @@
   input;
   - Ao pressionar o botão "CE", o input deve ficar zerado.
   */
+
+  var $input = document.querySelector('input[type="text"]');
+  var $buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
+  var $buttonCE = document.querySelector('[data-js="CE"]');
+  var $buttonsOperations = document.querySelectorAll('[data-js="button-operation"]')
+  var $buttonEqual = document.querySelector('[data-js="="]');
+  var $buttonPoint = document.querySelector('[data-js="."]');
+
+  Array.prototype.forEach.call($buttonsNumbers, function(button) {
+    button.addEventListener('click', handleClickNumber, false)
+  });
+  Array.prototype.forEach.call($buttonsOperations, function(button) {
+    button.addEventListener('click', handleClickOperation, false)
+  });
+  $buttonCE.addEventListener('click', handleClickCE, false);
+
+  function handleClickNumber() {
+    $input.value += this.value;
+  }
+
+  function handleClickOperation() {
+    if(isLastItemAnOperation()) {
+      $input.value = $input.value.slice(0, -1);
+    }
+    $input.value += this.value;
+  }
+
+  function handleClickCE() {
+    $input.value = 0;
+  }
+
+  function isLastItemAnOperation() {
+    var operations = ['+', '-', '*', '/'];
+    var lastItem = $input.value.split('').pop();
+    return operations.some(function (operator) {
+      return operator === lastItem;
+    })
+  }
+
+
 })(window, document);

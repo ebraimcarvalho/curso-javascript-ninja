@@ -60,12 +60,12 @@
   function handleClickBack() {
     var exp = $input.value
     if(exp) {
-      $input.value = exp.substring(0, exp.length-1);
+      $input.value = exp.slice(0, -1);
     }
   }
 
   function isLastItemAnOperation(number) {
-    var operations = ['+', '-', '*', '/'];
+    var operations = ['+', '-', '*', '/', '.'];
     var lastItem = number.split('').pop();
     return operations.some(function (operator) {
       return operator === lastItem;
@@ -81,7 +81,7 @@
 
   function handleClickEqual() {
     $input.value = removeLastItemIfOperator($input.value);
-    var allValues = $input.value.match(/\d+[+*/-]?/g);
+    var allValues = $input.value.match(/\d+[.]?[\d+]?[+*/-]?/g);
     $input.value = allValues.reduce(function(accumulated, actual) {
       var firstValue = accumulated.slice(0, -1);
       var operator = accumulated.split('').pop();

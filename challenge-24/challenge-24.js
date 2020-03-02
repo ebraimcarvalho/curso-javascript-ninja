@@ -42,10 +42,6 @@
     $visor.value += this.value;
   }
 
-  function handleClickCE() {
-    $visor.value = 0;
-  }
-
   function removeLastItemIfItIsAnOperator(string) {
     if(isLastItemAnOperation(string)) {
       return string.slice(0, -1);
@@ -67,6 +63,10 @@
     })
   }
 
+  function handleClickCE() {
+    $visor.value = 0;
+  }
+
   function handleClickEqual() {
     $visor.value = removeLastItemIfItIsAnOperator($visor.value);
     var allValues = $visor.value.match(getRegexOperations());
@@ -81,7 +81,7 @@
     var firstValue = accumulated.slice(0, -1);
     var operator = accumulated.split('').pop();
     var lastValue = removeLastItemIfItIsAnOperator(actual);
-    var lastOperator =getLastOperator(actual)
+    var lastOperator = getLastOperator(actual)
     return doOperation(operator, firstValue, lastValue) + lastOperator;
   }
 

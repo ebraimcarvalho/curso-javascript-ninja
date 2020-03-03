@@ -74,7 +74,7 @@
   }
 
   function getRegexOperations() {
-    return new RegExp(`\\d+[${getOperations().join('')}]?`, 'g')
+    return new RegExp(`\\d+[\\.]?(\\d+)?[${getOperations().join('')}]?`, 'g')
   }
 
   function calculateAllValues(accumulated, actual) {

@@ -73,6 +73,7 @@
   */
   books = JSON.parse(books);
   console.log( '\nAgora os livros são objetos novamente:' );
+  console.log(books)
 
   /*
   Mostre no console todas as propriedades e valores de todos os livros,

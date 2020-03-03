@@ -53,6 +53,21 @@
     $input.value += this.value;
   }
 
+  function removeLastItemIfOperator(number) {
+    if(isLastItemAnOperation(number)) {
+      return number.slice(0, -1);
+    }
+    return number;
+  }
+
+  function isLastItemAnOperation(number) {
+    var operations = ['+', '-', '*', '/', '.'];
+    var lastItem = number.split('').pop();
+    return operations.some(function (operator) {
+      return operator === lastItem;
+    })
+  }
+
   function handleClickCE() {
     $input.value = 0;
   }
@@ -64,24 +79,9 @@
     }
   }
 
-  function isLastItemAnOperation(number) {
-    var operations = ['+', '-', '*', '/', '.'];
-    var lastItem = number.split('').pop();
-    return operations.some(function (operator) {
-      return operator === lastItem;
-    })
-  }
-
-  function removeLastItemIfOperator(number) {
-    if(isLastItemAnOperation(number)) {
-      return number.slice(0, -1);
-    }
-    return number;
-  }
-
   function handleClickEqual() {
     $input.value = removeLastItemIfOperator($input.value);
-    var allValues = $input.value.match(/\d+[.]?[\d+]?[+*/-]?/g);
+    var allValues = $input.value.match(/\d+[.]?(\d+)?[+*/-]?/g);
     $input.value = allValues.reduce(function(accumulated, actual) {
       var firstValue = accumulated.slice(0, -1);
       var operator = accumulated.split('').pop();

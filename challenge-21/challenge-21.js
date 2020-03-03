@@ -27,7 +27,7 @@
 
   function startTimer() {
     $inputTimer.value++;
-    interval = setTimeout(startTimer, 1000);
+    interval = setTimeout(startTimer, 1000)
   }
 
   function stopTimer() {

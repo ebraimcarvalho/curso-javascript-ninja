@@ -24,7 +24,7 @@
   concatenadas. Mostre o `brasil` no console.
   */
   console.log( '\nAlguns Estados do Brasil:' );
-  var brasil = sul.concat(sudeste);
+  var brasil = [...sul, ...sudeste];
   console.log(brasil);
 
   /*

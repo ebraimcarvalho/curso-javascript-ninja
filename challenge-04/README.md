@@ -129,7 +129,7 @@ carro.adicionarPessoas = function(n) {
   } else {
     return 'Impossível ficar com pessoas negativas!';
   }
-  return `Já temos ${carro.quantidadePessoas} ${pluralOuSingular} no carro!`
+  return `Já temos ${carro.quantidadePessoas} ${carro.quantidadePessoas === 1 ? 'pessoa' : 'pessoas'} no carro!`
 }
 
 /*

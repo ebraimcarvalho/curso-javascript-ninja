@@ -101,11 +101,10 @@
   var $a = new DOM('[data-js="link"]');
   console.log($a);
 
-  var dataJs = $a.reduce(function(acc, item, index) {
-    return `${acc} ${item.getAttribute('data-js')} ${index}`;
-  }, 0);
-  console.log(dataJs);
+  var dataJs = $a.forEach(function(item) {
+    console.log(item.textContent)
+  });
 
-  console.log(DOM.isNumber(''))
+  console.log(DOM.isNumber(1))
 
 })();

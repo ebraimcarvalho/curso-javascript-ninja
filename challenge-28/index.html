@@ -6,22 +6,21 @@
     <title>Challenge 28</title>
   </head>
   <body>
-    <form>
-      <input data-js="inputCep" type="text" placeholder="Digite o CEP">
-      <button data-js="buttonCep" type="submit">Submit</button>
+    <form data-js="form-cep">
+      <input data-js="input-cep" type="text" placeholder="Digite o CEP">
+      <button type="submit">Consultar CEP</button>
     </form>
 
-    <div id="info">
-      <form>
-        <input data-js="logradouro" type="text" placeholder="Logradouro">
-        <input data-js="bairro" type="text" placeholder="Bairro">
-        <input data-js="estado" type="text" placeholder="Estado">
-        <input data-js="cep" type="text" placeholder="CEP">
-      </form>
+    <div>
+      <h3 data-js="status"></h3>
     </div>
-    <hr>
-    <div id="log">
-      <textarea id="textLog" cols="30" rows="10"></textarea>
+
+    <div data-js="cep-info">
+      <p><strong>Logradouro: </strong><span data-js="logradouro">-</span></p>
+      <p><strong>Bairro: </strong><span data-js="bairro">-</span></p>
+      <p><strong>Cidade: </strong><span data-js="cidade">-</span></p>
+      <p><strong>Estado: </strong><span data-js="estado">-</span></p>
+      <p><strong>CEP: </strong><span data-js="cep">-</span></p>
     </div>
 
     <script src="./challenge-28.js"></script>

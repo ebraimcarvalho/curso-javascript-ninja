@@ -1,3 +1,5 @@
+(function(window, document) {
+  'use strict';
   /*
   No HTML:
   - Crie um formulário com um input de texto que receberá um CEP e um botão
@@ -25,3 +27,24 @@
   - Utilize a lib DOM criada anteriormente para facilitar a manipulação e
   adicionar as informações em tela.
   */
+
+  var $inputCep = document.querySelector('[data-js="inputCep"]');
+  var $button = document.querySelector('[data-js="buttonCep"]');
+
+  function cleanCPF() {
+    if(!$inputCep.value){
+      return console.error('Erro! Entre com CPF!');
+    }
+    var regex = /\d+/gi
+    var cepClean = $inputCep.value.match(regex).join('');
+    return $inputCep.value = cepClean;
+  }
+
+  $button.addEventListener('click', submitCep, false);
+
+  function submitCep(event) {
+    event.preventDefault();
+    cleanCPF();
+  }
+
+})(window, document);

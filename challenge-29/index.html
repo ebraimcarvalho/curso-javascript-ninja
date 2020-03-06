@@ -9,43 +9,48 @@
 <body>
   <header>
     <h1>
-      <span>Cars Register</span>
-      <span> - (83) 3350-0505</span>
+      <span data-js="company-name"></span> -
+      <span data-js="company-phone"></span>
     </h1>
   </header>
 
-  <form data-js="form-register">
-    <label>Imagem do carro: </label>
-    <input type="url"><br>
-    <label>Marca / Modelo: </label>
-    <input type="text"><br>
-    <label>Ano: </label>
-    <input type="text"><br>
-    <label>Placa: </label>
-    <input type="text"><br>
-    <label>Cor: </label>
-    <input type="text"><br>
-    <button type="submit">Register Car</button>
-  </form>
+  <div class="form">
+    <form data-js="form-register">
+      <label>Imagem do carro: </label>
+      <input type="text" data-js="image"><br>
+      <label>Marca / Modelo: </label>
+      <input type="text" data-js="brand-model"><br>
+      <label>Ano: </label>
+      <input type="text" data-js="year"><br>
+      <label>Placa: </label>
+      <input type="text" data-js="plate"><br>
+      <label>Cor: </label>
+      <input type="text" data-js="color"><br>
+      <div class="button">
+        <button type="submit">Register Car</button>
+      </div>
+    </form>
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Imagem do carro</th>
-        <th>Marca / Modelo</th>
-        <th>Ano</th>
-        <th>Placa</th>
-        <th>Cor</th>
-      </tr>
-    </thead>
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th>Imagem do carro</th>
+          <th>Marca / Modelo</th>
+          <th>Ano</th>
+          <th>Placa</th>
+          <th>Cor</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
+      <tbody data-js="table-car">
 
-      </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 
+  <script src="./dom.js"></script>
   <script src="./challenge-29.js"></script>
 </body>
 </html>

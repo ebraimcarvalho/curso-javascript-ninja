@@ -114,6 +114,7 @@
   var $cep = new DOM('[data-js="cep"]');
   var $status = new DOM('[data-js="status"]');
   var ajax = new XMLHttpRequest();
+
   $formCEP.on('submit', handleSubmitFormCEP);
 
   function handleSubmitFormCEP(event) {
@@ -129,8 +130,21 @@
     return replaceCEP('https://viacep.com.br/ws/[CEP]/json')
   }
 
+  function replaceCEP(string) {
+    return string.replace('[CEP]', clearCEP());
+  }
+
   function clearCEP() {
     return $inputCep.get()[0].value.replace(/\D/g, '')
+  }
+
+  function getMessage(type) {
+    var messages = {
+      ok: replaceCEP('Endereço referente ao CEP [CEP]:'),
+      loading: replaceCEP('Buscando informações para o CEP [CEP]...'),
+      error: replaceCEP('Não encontramos o endereço para o CEP [CEP].')
+    }
+    $status.get()[0].textContent = messages[type];
   }
 
   function handleReadyStateChange() {
@@ -157,16 +171,6 @@
     $cep.get()[0].textContent = data.cep;
   }
 
-  function clearData() {
-    return {
-      logradouro: '-',
-      bairro: '-',
-      localidade: '-',
-      uf: '-',
-      cep: '-'
-    }
-  }
-
   function parseData() {
     var result;
     try {
@@ -178,17 +182,14 @@
     return result;
   }
 
-  function getMessage(type) {
-    var messages = {
-      ok: replaceCEP('Endereço referente ao CEP [CEP]:'),
-      loading: replaceCEP('Buscando informações para o CEP [CEP]...'),
-      error: replaceCEP('Não encontramos o endereço para o CEP [CEP].')
+  function clearData() {
+    return {
+      logradouro: '-',
+      bairro: '-',
+      localidade: '-',
+      uf: '-',
+      cep: '-'
     }
-    $status.get()[0].textContent = messages[type];
-  }
-
-  function replaceCEP(message) {
-    return message.replace('[CEP]', clearCEP());
   }
 
 })(window, document);

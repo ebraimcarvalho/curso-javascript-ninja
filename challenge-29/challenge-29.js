@@ -116,18 +116,4 @@
 
   app.init();
 
-  // var $formCar = document.querySelector('[data-js="form-register"]');
-  // var $cor = document.querySelector('[data-js="color"]');
-  // var $receive = document.querySelector('[data-js="table-car"]')
-
-  // $formCar.addEventListener('submit', handleSubmitRegister, false);
-
-  // function handleSubmitRegister(event) {
-  //   event.preventDefault();
-  //   var $td = document.createElement('td');
-  //   $td.textContent = $cor.value;
-  //   $receive.appendChild($td);
-  //   $cor.value = '';
-  // }
-
 })(window.DOM);

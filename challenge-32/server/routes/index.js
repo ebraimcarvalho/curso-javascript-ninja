@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
     body: req.body,
     data
   }, null, 2))
-  res.json({ message: 'success' });
+  res.json(data);
 });
 
 module.exports = router;

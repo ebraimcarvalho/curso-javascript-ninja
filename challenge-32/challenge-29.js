@@ -2,6 +2,7 @@
   'use strict';
 
   var app = (function appController() {
+    var $tableCar = $('[data-js="table-car"]').get();
     return {
       init: function init() {
         this.companyInfo();
@@ -46,16 +47,12 @@
       handlePost: function handlePost() {
         if(!app.isReady.call(this))
           return;
-        var $tableCar = $('[data-js="table-car"]').get();
-        var count = $tableCar.children.length;
-        for (let i = 0; i < count; i++) {
-          $tableCar.children[0].remove();
-        }
         app.loadListCar();
-        app.clearData();
+        app.clearInputs();
       },
 
       loadListCar: function loadListCar() {
+        $tableCar.innerHTML = '';
         var ajax = new XMLHttpRequest();
         ajax.open('GET', 'http://localhost:3000/car');
         ajax.send();
@@ -66,9 +63,8 @@
         if(!app.isReady.call(this))
           return;
         var response = JSON.parse(this.responseText);
-        var $tableCar = $('[data-js="table-car"]').get();
         response.map(car => {
-          $tableCar.appendChild(app.createNewCar(car));
+          $tableCar.appendChild(app.createNewCar(car))
         });
       },
 
@@ -104,15 +100,13 @@
 
         function handleRemove() {
           var removeDiv = $buttonRemove.parentNode.parentNode;
-          // removeDiv.outerHTML = '';
           removeDiv.remove();
-          // removeDiv.parentNode.removeChild(removeDiv);
         }
 
         return $fragment.appendChild($tr);
       },
 
-      clearData: function clearData() {
+      clearInputs: function clearInputs() {
         $('[data-js="image"]').get().value = '';
         $('[data-js="brand-model"]').get().value = '';
         $('[data-js="year"]').get().value = '';

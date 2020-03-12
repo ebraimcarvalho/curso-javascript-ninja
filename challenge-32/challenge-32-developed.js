@@ -63,6 +63,7 @@
         if(!app.isReady.call(this))
           return;
         var response = JSON.parse(this.responseText);
+        console.log(response);
         response.map(car => {
           $tableCar.appendChild(app.createNewCar(car))
         });
@@ -82,6 +83,7 @@
 
         $image.setAttribute('src', car.image);
         $buttonRemove.textContent = 'Remove Car';
+        $buttonRemove.setAttribute('data-plate', car.plate)
         $buttonRemove.addEventListener('click', handleRemove, false);
         $remove.appendChild($buttonRemove);
 
@@ -99,11 +101,26 @@
         $tr.appendChild($remove);
 
         function handleRemove() {
+          var $plate = $buttonRemove.getAttribute('data-plate');
+          app.removeCarFromApi($plate);
+
           var removeDiv = $buttonRemove.parentNode.parentNode;
           removeDiv.remove();
         }
 
         return $fragment.appendChild($tr);
+      },
+
+      removeCarFromApi: function removeCarFromApi(plate) {
+        var ajax = new XMLHttpRequest();
+        ajax.open('DELETE', 'http://localhost:3000/car');
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        ajax.send(`plate=${plate}`);
+        ajax.addEventListener('readystatechange', function() {
+          if(!app.isReady.call(this))
+            return;
+          return alert(`Register with plate ${plate} has been excluded!`);
+        })
       },
 
       clearInputs: function clearInputs() {

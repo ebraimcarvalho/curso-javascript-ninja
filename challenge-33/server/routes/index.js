@@ -9,13 +9,20 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  data.push({
-    image: req.body.image,
-    brandModel: req.body.brandModel,
-    year: req.body.year,
-    plate: req.body.plate,
-    color: req.body.color
-  });
+  function hasPlate(element) {
+    return element.plate === req.body.plate;
+  }
+  if (data.some(hasPlate)) {
+    return console.log('Plate already registered!');
+  } else {
+    data.push({
+      image: req.body.image,
+      brandModel: req.body.brandModel,
+      year: req.body.year,
+      plate: req.body.plate,
+      color: req.body.color
+    });
+  }
   res.json({ message: 'success' });
 });
 
